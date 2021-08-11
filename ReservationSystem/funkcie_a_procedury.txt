@@ -1,0 +1,134 @@
+﻿create or replace FUNCTION UserExists(v_login IN VARCHAR) return VARCHAR
+IS
+    v_user VARCHAR2(30); 
+BEGIN
+    SELECT login into v_user FROM USERS WHERE login = v_login;
+
+    if (v_user IS NOT NULL) then
+        return 'TRUE';
+    else 
+        return 'FALSE';
+    end if;
+
+EXCEPTION 
+    WHEN NO_DATA_FOUND then
+        return 'FALSE';
+
+END;
+
+=======================================================================================
+create or replace procedure CancelationOfFutureReservations(
+    v_IdUser IN INTEGER,
+    v_currentDate IN DATE
+)
+AS
+BEGIN
+    INSERT INTO Cancelations (Reservations_IdReservation, CancelationDate)
+    SELECT r.IdReservation, v_currentDate 
+    FROM Reservations r
+    LEFT JOIN Cancelations c on c.RESERVATIONS_IDRESERVATION = r.IDRESERVATION
+    Where r.Users_IdUser = v_IdUser AND r.reservationDate > v_currentDate AND c.CancelationDate IS NULL;
+
+    UPDATE USERS  
+    SET  CancelationCount = (select Count(r.IdReservation) 
+                                from Reservations r
+                                JOIN Cancelations c on r.idReservation = c.Reservations_idReservation
+                                where r.Users_IdUser  = v_IdUser and c.cancelationDate IS NOT NULL)                                                                                                                                                                                                                                                                              
+    WHERE USERS.IdUser = v_IdUser;
+COMMIT;
+
+EXCEPTION
+    when others then
+rollback;
+
+END;
+==============================================================================================
+create or replace PROCEDURE CancelationOfReservationAndPayments(
+        v_reservationFrom IN DATE,
+        v_reservationTo IN DATE,
+        v_date IN DATE
+                        )
+    AS
+    BEGIN
+        INSERT INTO Cancelations(Reservations_IdReservation, CancelationDate)
+        SELECT r.IdReservation, v_date 
+            FROM Reservations r
+            LEFT JOIN Cancelations c on c.RESERVATIONS_IDRESERVATION = r.IDRESERVATION
+            WHERE r.ReservationDate > v_date 
+            AND r.ReservationDate >= v_reservationFrom 
+            AND r.EndReservation <= v_reservationTo AND c.CancelationDate IS NULL;
+        DELETE from Payments 
+        WHERE  Reservations_IdReservation IN (  Select IdReservation FROM Reservations 
+                                                WHERE ReservationDate > v_date
+                                                AND ReservationDate >= v_reservationFrom 
+                                                AND EndReservation <= v_reservationTo);
+    COMMIT;
+     EXCEPTION
+         when others then
+        ROLLBACK;
+    END;
+=========================================================================================
+    
+    create or replace PROCEDURE CreateReservation(
+    v_idreservation IN INTEGER,
+    v_reservationdate IN DATE,
+    v_endreservation IN DATE,
+    v_iduser IN  INTEGER,
+    v_idroom IN INTEGER,
+    v_description IN VARCHAR2,
+    v_idUsers_list IN VARCHAR2
+) AS
+    idUser_item INTEGER;
+BEGIN
+    INSERT Into Reservations (IdReservation, ReservationDate, EndReservation, Users_IdUser, Rooms_IdRoom, Description)
+    VALUES (v_idreservation, v_reservationdate, v_endreservation, v_iduser, v_idroom, v_description);
+
+    FOR id_user_item IN (SELECT trim(regexp_substr(v_idUsers_list, '[^,]+', 1, LEVEL)) l FROM dual CONNECT BY LEVEL <= regexp_count(v_idUsers_list, ',')+1)
+    LOOP
+        --dbms_output.put_line(id_user_item.l);
+        idUser_item := id_user_item.l;
+        INSERT into ReservationRoomUsers (Reservations_IdReservation, Users_IdUser) 
+        VALUES (v_idreservation, idUser_item);
+    END LOOP;
+    COMMIT;
+        EXCEPTION WHEN OTHERS THEN
+    ROLLBACK;
+END;
+======================================================================================================================================================
+     
+     
+create or replace FUNCTION VerificationOfAbility(v_reservationFrom IN DATE, v_reservationTo IN DATE, v_idRoom IN INTEGER) return VARCHAR
+IS
+    v_pocet_rezervaci INTEGER;
+BEGIN
+    SELECT COUNT(idReservation) INTO v_pocet_rezervaci 
+    FROM Reservations
+    WHERE Rooms_idRoom = v_idRoom and 
+    ((ReservationDate >= v_reservationFrom and ReservationDate <= v_reservationTo) 
+    OR (EndReservation >= v_reservationFrom and EndReservation <= v_reservationTo));
+
+    IF(v_pocet_rezervaci = 0) THEN
+        RETURN 'TRUE';
+    ELSE
+        RETURN 'FALSE';
+    END IF;
+
+EXCEPTION 
+    WHEN NO_DATA_FOUND then
+        return 'FALSE';
+end;
+
+=====================================================================
+
+SELECT RoomNumber, 
+(Select COUNT(*) FROM Reservations
+WHERE Rooms.idRoom = Reservations.Rooms_idRoom 
+AND Reservations.ReservationDate > sysdate) 
+as pocet_buducich_rezervacii,
+(Select COUNT(*) FROM Reservations
+JOIN Payments ON Reservations.IdReservation = Payments.Reservations_IdReservation
+WHERE Rooms.idRoom = Reservations.Rooms_idRoom 
+AND Reservations.ReservationDate > sysdate
+AND Payments.PaymentDate IS NOT NULL) as pocet_buducich_zaplatenych
+FROM Rooms
+Where Rooms.RoomTypes_IdRoomType = 20;

@@ -1,0 +1,8 @@
+Oracle.ManagedDataAccess.Client.OracleException
+  HResult=0x80004005
+  Message=ORA-01722: invalid number
+  Source=Oracle Data Provider for .NET, Managed Driver
+  StackTrace:
+   at AuctionSystem.ORM.Oracle.Database.ExecuteNonQuery(OracleCommand command) in C:\Users\Mirka\Desktop\AuctionSystemORM\Database\oracle\Database.cs:line 101
+   at AuctionSystem.ORM.Oracle.RoomTable.update(Room room, DatabaseProxy pDb) in C:\Users\Mirka\Desktop\AuctionSystemORM\Database\oracle\RoomTable.cs:line 84
+   at AuctionSystem.Program.Main(String[] args) in C:\Users\Mirka\Desktop\AuctionSystemORM\Program.cs:line 75

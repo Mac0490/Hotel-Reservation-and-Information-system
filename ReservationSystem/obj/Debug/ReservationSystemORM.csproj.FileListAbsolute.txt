@@ -1,0 +1,18 @@
+C:\Users\Mirka\Desktop\ReservationSystem\bin\Debug\AuctionSystemORM.exe.config
+C:\Users\Mirka\Desktop\ReservationSystem\bin\Debug\AuctionSystemORM.exe
+C:\Users\Mirka\Desktop\ReservationSystem\bin\Debug\AuctionSystemORM.pdb
+C:\Users\Mirka\Desktop\ReservationSystem\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Mirka\Desktop\ReservationSystem\obj\Debug\ReservationSystemORM.csproj.CoreCompileInputs.cache
+C:\Users\Mirka\Desktop\ReservationSystem\obj\Debug\ReservationSystemORM.csproj.CopyComplete
+C:\Users\Mirka\Desktop\ReservationSystem\obj\Debug\AuctionSystemORM.exe
+C:\Users\Mirka\Desktop\ReservationSystem\obj\Debug\AuctionSystemORM.pdb
+C:\Users\Mirka\Desktop\ReservationSystem\obj\Debug\ReservationSystemORM.csprojAssemblyReference.cache
+C:\Users\Mirka\Desktop\VSB-TUO-4 semester\DAIS\ReservationSystem\obj\Debug\ReservationSystemORM.csprojAssemblyReference.cache
+C:\Users\Mirka\Desktop\VSB-TUO-4 semester\DAIS\ReservationSystem\obj\Debug\ReservationSystemORM.csproj.CoreCompileInputs.cache
+C:\Users\Mirka\Desktop\VSB-TUO-4 semester\DAIS\ReservationSystem\obj\Debug\AuctionSystemORM.exe
+C:\Users\Mirka\Desktop\VSB-TUO-4 semester\DAIS\ReservationSystem\obj\Debug\AuctionSystemORM.pdb
+C:\Users\Mirka\Desktop\VSB-TUO-4 semester\DAIS\ReservationSystem\bin\Debug\AuctionSystemORM.exe.config
+C:\Users\Mirka\Desktop\VSB-TUO-4 semester\DAIS\ReservationSystem\bin\Debug\AuctionSystemORM.exe
+C:\Users\Mirka\Desktop\VSB-TUO-4 semester\DAIS\ReservationSystem\bin\Debug\AuctionSystemORM.pdb
+C:\Users\Mirka\Desktop\VSB-TUO-4 semester\DAIS\ReservationSystem\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Mirka\Desktop\VSB-TUO-4 semester\DAIS\ReservationSystem\obj\Debug\ReservationSystemORM.csproj.CopyComplete

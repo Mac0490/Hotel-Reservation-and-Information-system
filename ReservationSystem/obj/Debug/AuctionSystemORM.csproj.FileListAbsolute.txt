@@ -1,0 +1,16 @@
+C:\Users\Mirka\Desktop\AuctionSystemORM\obj\Debug\AuctionSystemORM.csproj.CoreCompileInputs.cache
+C:\Users\Mirka\Desktop\AuctionSystemORM\bin\Debug\AuctionSystemORM.exe.config
+C:\Users\Mirka\Desktop\AuctionSystemORM\bin\Debug\AuctionSystemORM.exe
+C:\Users\Mirka\Desktop\AuctionSystemORM\bin\Debug\AuctionSystemORM.pdb
+C:\Users\Mirka\Desktop\AuctionSystemORM\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Mirka\Desktop\AuctionSystemORM\obj\Debug\AuctionSystemORM.csproj.CopyComplete
+C:\Users\Mirka\Desktop\AuctionSystemORM\obj\Debug\AuctionSystemORM.exe
+C:\Users\Mirka\Desktop\AuctionSystemORM\obj\Debug\AuctionSystemORM.pdb
+C:\Users\Mirka\Desktop\ReservationSystem\bin\Debug\AuctionSystemORM.exe.config
+C:\Users\Mirka\Desktop\ReservationSystem\bin\Debug\AuctionSystemORM.exe
+C:\Users\Mirka\Desktop\ReservationSystem\bin\Debug\AuctionSystemORM.pdb
+C:\Users\Mirka\Desktop\ReservationSystem\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Mirka\Desktop\ReservationSystem\obj\Debug\AuctionSystemORM.csproj.CoreCompileInputs.cache
+C:\Users\Mirka\Desktop\ReservationSystem\obj\Debug\AuctionSystemORM.csproj.CopyComplete
+C:\Users\Mirka\Desktop\ReservationSystem\obj\Debug\AuctionSystemORM.exe
+C:\Users\Mirka\Desktop\ReservationSystem\obj\Debug\AuctionSystemORM.pdb
